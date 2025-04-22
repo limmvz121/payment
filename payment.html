@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #1e90ff, #87cefa);
+      overflow: hidden;
+      color: white;
+      text-align: center;
+    }
+    h1 {
+      margin-top: 40px;
+    }
+    .logo {
+      margin-top: 10px;
+    }
+    .payment-container {
+      margin-top: 30px;
+    }
+    .payment-method {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      margin: 20px auto;
+      width: 300px;
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+    }
+    .payment-method button {
+      margin-top: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      background-color: #ffffff;
+      color: #1e90ff;
+      cursor: pointer;
+    }
+    .confirm-btn {
+      margin-top: 30px;
+      padding: 15px 25px;
+      font-size: 16px;
+      background-color: #ffffff;
+      color: #1e90ff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 1em;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Pembayaran</h1>
+  <div class="logo">
+    <img src="https://i.postimg.cc/N0yPBj5D/kyami.jpg" alt="Logo" width="120" />
+  </div>
+  <div class="payment-container">
+    <div class="payment-method">
+      <h3>DANA</h3>
+      <p id="dana">085757820755</p>
+      <button onclick="copyText('dana')">Salin</button>
+    </div>
+    <div class="payment-method">
+      <h3>Gopay</h3>
+      <p id="gopay">083134463914</p>
+      <button onclick="copyText('gopay')">Salin</button>
+    </div>
+    <div class="payment-method">
+      <h3>OVO</h3>
+      <p id="ovo">085165212382</p>
+      <button onclick="copyText('ovo')">Salin</button>
+    </div>
+    <div class="payment-method">
+      <h3>QRIS</h3>
+      <img src="https://i.postimg.cc/T1df1b8g/qrcode-pembayaran.jpg" alt="QRIS" width="200" />
+    </div>
+  </div>
+  <button class="confirm-btn" onclick="konfirmasiPembayaran()">Konfirmasi Pembayaran</button>
+
+  <script>
+    function copyText(id) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Nomor berhasil disalin!');
+      });
+    }
+
+    function konfirmasiPembayaran() {
+      const nomorWhatsApp = '083134463914';
+      const pesan = encodeURIComponent('Halo Min, Saya Ingin Mengonfirmasi Pembayaran saya');
+      window.location.href = `https://wa.me/${nomorWhatsApp}?text=${pesan}`;
+    }
+
+    // Efek salju
+    for (let i = 0; i < 50; i++) {
+      let snowflake = document.createElement('div');
+      snowflake.classList.add('snowflake');
+      snowflake.style.left = Math.random() * 100 + 'vw';
+      snowflake.style.animationDuration = 2 + Math.random() * 3 + 's';
+      snowflake.style.opacity = Math.random();
+      snowflake.innerText = '❄';
+      document.body.appendChild(snowflake);
+    }
+  </script>
+</body>
+</html>
